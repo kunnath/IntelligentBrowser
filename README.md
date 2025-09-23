@@ -120,3 +120,4 @@ This gives Claude Desktop access to browser automation tools for web scraping, f
 <div align="center">
 Made with ❤️ in Zurich and San Francisco
  </div>
+# IntelligentBrowser
