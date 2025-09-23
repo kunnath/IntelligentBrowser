@@ -5,21 +5,27 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from dotenv import load_dotenv
-
 load_dotenv()
 
-from browser_use import Agent, ChatOpenAI
+from browser_use import Agent
+from browser_use.llm.deepseek.chat import ChatDeepSeek  # Updated to use DeepSeek
+
+# Check for required environment variable
+required_env_vars = ['DEEPSEEK_API_KEY']
+for var in required_env_vars:
+    if not os.getenv(var):
+        raise ValueError(f'{var} is not set. Please add it to your environment variables.')
 
 task = """
-   ### Prompt for Shopping Agent – Migros Online Grocery Order
+### Prompt for Shopping Agent – Migros Online Grocery Order
 
-**Objective:**
-Visit [Migros Online](https://www.migros.ch/en), search for the required grocery items, add them to the cart, select an appropriate delivery window, and complete the checkout process using TWINT.
+**Objective:** Visit [Migros Online](https://www.migros.ch/en), search for the required grocery items, add them to the cart, select an appropriate delivery window, and complete the checkout process using TWINT.
 
-**Important:**
+**Important:** 
 - Make sure that you don't buy more than it's needed for each article.
-- After your search, if you click  the "+" button, it adds the item to the basket.
+- After your search, if you click the "+" button, it adds the item to the basket.
 - if you open the basket sidewindow menu, you can close it by clicking the X button on the top right. This will help you navigate easier.
+
 ---
 
 ### Step 1: Navigate to the Website
@@ -77,7 +83,7 @@ At this stage, check the basket on the top right (indicates the price) and check
 ---
 
 ### Step 4: Adjusting for Minimum Order Requirement
-- If the total order **is below CHF 99**, add **a liquid soap refill** to reach the minimum. If it;s still you can buy some bread, dark chockolate.
+- If the total order **is below CHF 99**, add **a liquid soap refill** to reach the minimum. If it's still you can buy some bread, dark chocolate.
 - At this step, check if you have bought MORE items than needed. If the price is more then CHF200, you MUST remove items.
 - If an item is not available, choose an alternative.
 - if an age verification is needed, remove alcoholic products, we haven't verified yet.
@@ -94,9 +100,9 @@ At this stage, check the basket on the top right (indicates the price) and check
 - Proceed to checkout.
 - Select **TWINT** as the payment method.
 - Check out.
-- 
-- if it's needed the username is: nikoskalio.dev@gmail.com 
+- if it's needed the username is: nikoskalio.dev@gmail.com
 - and the password is : TheCircuit.Migros.dev!
+
 ---
 
 ### Step 7: Confirm Order & Output Summary
@@ -105,16 +111,26 @@ At this stage, check the basket on the top right (indicates the price) and check
   - **Total cost**.
   - **Chosen delivery time**.
 
-**Important:** Ensure efficiency and accuracy throughout the process."""
+**Important:** Ensure efficiency and accuracy throughout the process.
+"""
 
-
-agent = Agent(task=task, llm=ChatOpenAI(model='gpt-4.1-mini'))
-
+# Updated to use ChatDeepSeek instead of ChatGoogle/ChatOpenAI
+agent = Agent(
+    task=task, 
+    llm=ChatDeepSeek(
+        model='deepseek-chat',
+        api_key=os.getenv('DEEPSEEK_API_KEY')
+    )
+)
 
 async def main():
-	await agent.run()
-	input('Press Enter to close the browser...')
-
+    try:
+        await agent.run()
+        input('Press Enter to close the browser...')
+    except Exception as e:
+        print(f"Error running agent: {e}")
+    except KeyboardInterrupt:
+        print("Script interrupted by user")
 
 if __name__ == '__main__':
-	asyncio.run(main())
+    asyncio.run(main())
