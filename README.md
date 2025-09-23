@@ -45,10 +45,11 @@ Download chromium using playwright's shortcut:
 uvx playwright install chromium --with-deps --no-shell
 ```
 
-Create a `.env` file and add your API key. Don't have one? Start with a [free Gemini key](https://aistudio.google.com/app/u/1/apikey?pli=1).
+Create a `.env` file and add your API key. Don't have one? Start with a [free DEEPSEEK_API_KEY](https://aistudio.google.com/app/u/1/apikey?pli=1).
 
 ```bash
-GEMINI_API_KEY=
+DEEPSEEK_API_KEY=
+
 ```
 
 Run your first agent:
@@ -58,10 +59,14 @@ from browser_use import Agent, ChatGoogle
 from dotenv import load_dotenv
 load_dotenv()
 
+
+# Updated to use ChatDeepSeek instead of ChatGoogle/ChatOpenAI
 agent = Agent(
-    task="Find the number of stars of the browser-use repo",
-    llm=ChatGoogle(model="gemini-2.5-flash"),
-    # browser=Browser(use_cloud=True),  # Uses Browser-Use cloud for the browser
+    task=task, 
+    llm=ChatDeepSeek(
+        model='deepseek-chat',
+        api_key=os.getenv('DEEPSEEK_API_KEY')
+    )
 )
 agent.run_sync()
 ```
@@ -110,14 +115,10 @@ This gives Claude Desktop access to browser automation tools for web scraping, f
   
 **Tell your computer what to do, and it gets it done.**
 
-<img src="https://github.com/user-attachments/assets/06fa3078-8461-4560-b434-445510c1766f" width="400"/>
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/Magnus?style=social)](https://x.com/intent/user?screen_name=mamagnus00)
-[![Twitter Follow](https://img.shields.io/twitter/follow/Gregor?style=social)](https://x.com/intent/user?screen_name=gregpr07)
+
+
 
 </div>
 
-<div align="center">
-Made with ❤️ in Zurich and San Francisco
- </div>
 # IntelligentBrowser
