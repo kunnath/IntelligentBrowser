@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Automation Flow Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
+        .step { margin: 20px 0; padding: 15px; border-radius: 5px; border-left: 5px solid; }
+        .step.success { background-color: #d4edda; border-color: #28a745; }
+        .step.failed { background-color: #f8d7da; border-color: #dc3545; }
+        .step.warning { background-color: #fff3cd; border-color: #ffc107; }
+        .step-header { display: flex; justify-content: between; align-items: center; margin-bottom: 10px; }
+        .step-number { background: #333; color: white; padding: 5px 10px; border-radius: 50%; font-weight: bold; }
+        .status { padding: 3px 8px; border-radius: 3px; color: white; font-size: 12px; text-transform: uppercase; }
+        .status.success { background-color: #28a745; }
+        .status.failed { background-color: #dc3545; }
+        .status.warning { background-color: #ffc107; color: #333; }
+        .screenshot { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; margin: 10px 0; }
+        .error { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; border-radius: 4px; font-family: monospace; color: #dc3545; }
+        .summary { background-color: #e9ecef; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        .timestamp { color: #6c757d; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Browser Automation Flow Report</h1>
+            <p>Generated on: 2025-09-26 17:18:30</p>
+            <p>Website: https://www.dinexora.de</p>
+        </div>
+        
+        <div class="summary">
+            <h2>Execution Summary</h2>
+            <p><strong>Total Steps:</strong> 2</p>
+            <p><strong>Successful:</strong> 2</p>
+            <p><strong>Failed:</strong> 0</p>
+            <p><strong>Warnings:</strong> 0</p>
+            <p><strong>Duration:</strong> 1374.05 seconds</p>
+        </div>
+        
+        <div class="flow">
+            <h2>User Flow Steps</h2>
+
+            <div class="step success">
+                <div class="step-header">
+                    <div>
+                        <span class="step-number">1</span>
+                        <strong>Navigate to Website</strong>
+                    </div>
+                    <span class="status success">success</span>
+                </div>
+                <p>Successfully navigated to https://www.dinexora.de</p>
+                <div class="timestamp">Executed at: 2025-09-26T16:55:36.522705</div>
+                
+                
+                
+                
+            </div>
+
+            <div class="step success">
+                <div class="step-header">
+                    <div>
+                        <span class="step-number">2</span>
+                        <strong>Page Analysis</strong>
+                    </div>
+                    <span class="status success">success</span>
+                </div>
+                <p>Completed page structure analysis</p>
+                <div class="timestamp">Executed at: 2025-09-26T17:18:30.575535</div>
+                
+                
+                
+                
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
