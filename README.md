@@ -79,7 +79,7 @@ Check out the [library docs](https://docs.browser-use.com) and [cloud docs](http
 
 [Task](https://github.com/kunnath/IntelligentBrowser/blob/main/examples/use-cases/generator.py): Add grocery items to cart, and checkout.
 
-[![AI Did My dinexora.de](browser-use/reports/report.png)](https://youtu.be/z-ZWvG6MT00)
+[![AI Did My dinexora.de](https://github.com/kunnath/IntelligentBrowser/blob/main/reports/report.png)](https://youtu.be/z-ZWvG6MT00)
 
 <br/><br/>
 
